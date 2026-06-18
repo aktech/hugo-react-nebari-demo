@@ -1,0 +1,30 @@
+flowchart TB
+    subgraph BUILD["Hugo build"]
+        TSX[/React TSX/]
+        ESB[esbuild js.Build]
+        JS[/bundle.js/]
+        HTML[Static HTML]
+    end
+
+    subgraph RUN["Browser"]
+        PAGE([Browser])
+        REACT[React runtime]
+        ROOT[nebari-root]
+    end
+
+    TSX --> ESB
+    ESB --> JS
+    JS -.-> PAGE
+    HTML -.-> PAGE
+    PAGE --> REACT
+    REACT --> ROOT
+
+    classDef src fill:#e0e7ff,stroke:#4338ca,color:#312e81;
+    classDef build fill:#fef9c3,stroke:#a16207,color:#713f12;
+    classDef out fill:#ecfccb,stroke:#4d7c0f,color:#365314;
+    classDef run fill:#fae8ff,stroke:#a21caf,color:#701a75;
+
+    class TSX src;
+    class ESB build;
+    class JS,HTML out;
+    class PAGE,REACT,ROOT run;
