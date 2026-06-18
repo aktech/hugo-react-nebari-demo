@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ .Site.Title }}</title>
+    {{ $opts := dict "minify" hugo.IsProduction }}
+    {{ $css := resources.Get "css/main.css" | css.TailwindCSS $opts }}
+    {{ if hugo.IsProduction }}{{ $css = $css | fingerprint }}{{ end }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+  </head>
+  <body>
+    <div id="nebari-root"></div>
+    {{ $js := resources.Get "js/index.tsx" | js.Build (dict "minify" hugo.IsProduction "format" "esm" "target" "es2020") }}
+    {{ if hugo.IsProduction }}{{ $js = $js | fingerprint }}{{ end }}
+    <script type="module" src="{{ $js.RelPermalink }}"></script>
+  </body>
+</html>

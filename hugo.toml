@@ -1,0 +1,8 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Nebari Design + Hugo"
+
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[build]
+  writeStats = false

@@ -1,0 +1,5 @@
+/* Nebari brand theme tokens + Tailwind (globals.css already pulls in tailwindcss). */
+@import "../js/nebari/globals.css";
+
+/* Scan the React component sources so their utility classes are generated. */
+@source "../js";
